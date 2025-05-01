@@ -209,11 +209,11 @@ public class MainActivity extends AppCompatActivity {
             // Cancel any previously scheduled update
             if (updateRunnable != null) debounceHandler.removeCallbacks(updateRunnable);
 
-            // Schedule a new update after 100ms of no changes
+            // Schedule a new update after 20ms of no changes
             updateRunnable = () -> servoBluetooth.updateServoPosition(seekBarProgressToServoPosition(progress));
             servoControlBar.setEnabled(false); // disable control until peripheral ACK
             canWrite = false;
-            debounceHandler.postDelayed(updateRunnable, 100);  // 100ms debounce time
+            debounceHandler.postDelayed(updateRunnable, 20);  // 20ms debounce time
             // basically, it will cancel servo update request unless the slide bar has be still for 300ms
         }
 
